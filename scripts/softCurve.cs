@@ -5,23 +5,19 @@ using UnityEngine;
 public class softCurve : MonoBehaviour
 {
     public Transform target; // El objetivo al que quieres apuntar
-    public float rotationSpeed = 5.0f; // Velocidad de rotación
+    public float rotationSpeed = 5.0f; // Velocidad de rotacion
     public float moveSpeed = 5.0f; // Velocidad de movimiento
-
     void Update()
     {
         if (target != null)
         {
-            // Calcula la dirección hacia el objetivo
+            // Calcula la direccion hacia el objetivo
             Vector3 directionToTarget = target.position - transform.position;
-
-            // Calcula la rotación requerida para mirar hacia el objetivo
+            // Calcula la rotacion requerida para mirar hacia el objetivo
             Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-
-            // Realiza una interpolación suave entre la rotación actual y la rotación requerida
+            // Realiza una interpolacion suave entre la rotacion actual y la rotacion requerida
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-            // Mueve al personaje hacia adelante en su dirección actual
+            // Mueve al personaje hacia adelante en su direccion actual
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
     }
